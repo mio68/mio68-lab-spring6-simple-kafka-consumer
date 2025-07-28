@@ -1,0 +1,25 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: latest
+      client-id: simple-kafka-consumer
+      group-id: simple-kafka-consumer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # Использутся десериализатор который делегирует десериализацию и при ошибках десериализации
+      # вызывает обработчик ошибок для листенера (это десериализатор который умеет обрабатывать ошибки).
+      # https://docs.spring.io/spring-kafka/reference/kafka/serdes.html#error-handling-deserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      enable-dlq: true
+      properties:
+        spring.json.value.default.type: mio68.lab.spring6.kafka.consumer.dto.Person
+        # Десериализатор JSON которому будет делегировать ErrorHandlingDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+    listener:
+      ack-mode: RECORD
+
+    # Для отправки в DLT будем использовать такие сериализаторы
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+
