@@ -10,3 +10,5 @@
 Обработчик ошибок по умолчанию будет пропускать "плохие" сообщения, при необходимости можно кастомизировать
 обработчик ошибок чтобы отбрасывать "плохие" сообщения в DLT.
 см. [DltConfiguration.java](src/main/java/mio68/lab/spring6/kafka/consumer/configuration/DltConfiguration.java)
+
+Обрати внимание на TODO в [PersonService.java](src/main/java/mio68/lab/spring6/kafka/consumer/service/PersonService.java)

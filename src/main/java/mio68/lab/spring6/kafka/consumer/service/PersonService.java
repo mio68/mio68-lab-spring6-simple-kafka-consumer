@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 public class PersonService {
 
     @KafkaListener(topics = "persons")
+/*
+     TODO Что будет если обработчик бросит исключение. Необходимо проработать и реализовать.
+     Рассмотреть варианты
+     1. При возникновении ошибки делаем повторы и если лимит повторов исчерпан то переходим к следующему сообщению.
+     2. При возникновении ошибки делаем повторы и если лимит повторов исчерпан то отбрасываем плохое сообщение в DLT и
+     переходим к следующему сообщению.
+*/
     public void registerPerson(Person person) {
         log.info("Person registered: [{}].", person);
     }
