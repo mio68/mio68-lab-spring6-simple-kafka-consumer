@@ -11,9 +11,6 @@ public class PersonService {
 
     @KafkaListener(topics = "persons")
     public void registerPerson(Person person) {
-        if (person.getFirstName().equals("Donald")) {
-            throw new IllegalArgumentException("Donald is not valid name!");
-        }
         log.info("Person registered: [{}].", person);
     }
 

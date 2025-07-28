@@ -7,10 +7,11 @@ import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 
 @Configuration
-/**
- * Сообщения при обработке которых возникают исключния будут отправлены в DLT.
+/*
+  Сообщения при обработке которых возникают исключния будут отправлены в DLT.
  */
 public class DltConfiguration {
+
 
     @Bean
     public DeadLetterPublishingRecoverer deadLetterPublishingRecoverer(KafkaTemplate<Object, Object> kafkaTemplate) {
@@ -21,5 +22,4 @@ public class DltConfiguration {
     public DefaultErrorHandler errorHandler(DeadLetterPublishingRecoverer deadLetterPublishingRecoverer) {
         return new DefaultErrorHandler(deadLetterPublishingRecoverer);
     }
-
 }
